@@ -12,3 +12,5 @@
 */
 
 Route::get('/{any}', 'SpaController@index')->where('any', '.*');
+Route::get('/user', 'SpaController@index')->where('any', '.*');
+

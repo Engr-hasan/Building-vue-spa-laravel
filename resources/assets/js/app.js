@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import UsersIndex from './views/UsersIndex';
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,11 @@ const router = new VueRouter({
             path: '/hello',
             name: 'hello',
             component: Hello,
+        },
+        {
+            path: '/users',
+            name: 'users.index',
+            component: UsersIndex,
         },
     ],
 });
