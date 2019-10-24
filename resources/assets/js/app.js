@@ -1,12 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/vue-material.css'
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(VueRouter)
 
+Vue.use(VueMaterial)
+
+Vue.use(BootstrapVue)
+
 import App from './views/App'
-import Hello from './views/Hello'
 import Home from './views/Home'
-import UsersIndex from './views/UsersIndex';
+import Hello from './views/Hello'
+import UsersIndex from './views/UsersIndex'
+import UsersCreate from './views/UsersCreate';
+import UsersEdit from './views/UsersEdit'
+import NotFound from './views/NotFound'
 
 const router = new VueRouter({
     mode: 'history',
@@ -25,6 +36,25 @@ const router = new VueRouter({
             path: '/users',
             name: 'users.index',
             component: UsersIndex,
+        },
+        {
+            path: '/users/create',
+            name: 'users.create',
+            component: UsersCreate,
+        },
+        {
+            path: '/users/:id/edit',
+            name: 'users.edit',
+            component: UsersEdit,
+        },
+        {
+            path: '/404',
+            name: '404',
+            component: NotFound
+        },
+        {
+            path: '*',
+            redirect: '/404'
         },
     ],
 });
