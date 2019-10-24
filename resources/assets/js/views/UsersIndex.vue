@@ -5,7 +5,13 @@
         </div>
 
         <div v-if="error" class="error">
-            {{ error }}
+            <p>{{ error }}</p>
+
+            <p>
+                <button @click.prevent="fetchData">
+                    Try Again
+                </button>
+            </p>
         </div>
 
         <ul v-if="users">
@@ -36,9 +42,34 @@
                 axios
                     .get('/api/users')
                     .then(response => {
-                        console.log(response);
-                    });
+                        this.loading = false;
+                        this.users = response.data;
+                    }).catch(error => {
+                    this.loading = false;
+                    this.error = error.response.data.message || error.message;
+                });
             }
+
+            // fetchData() {
+            //     this.error = this.users = null;
+            //     this.loading = true;
+            //     axios
+            //         .get('/api/users')
+            //         .then(response => {
+            //             this.loading = false;
+            //             this.users = response.data;
+            //         });
+            // }
+
+            // fetchData() {
+            //     this.error = this.users = null;
+            //     this.loading = true;
+            //     axios
+            //         .get('/api/users')
+            //         .then(response => {
+            //             console.log(response);
+            //         });
+            // }
         }
     }
 </script>

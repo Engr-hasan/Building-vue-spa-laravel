@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import UsersIndex from './views/UsersIndex';
 
 Vue.use(VueRouter)
 
 import App from './views/App'
 import Hello from './views/Hello'
 import Home from './views/Home'
+import UsersIndex from './views/UsersIndex';
 
 const router = new VueRouter({
     mode: 'history',
