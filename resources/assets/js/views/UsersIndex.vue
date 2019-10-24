@@ -4,8 +4,10 @@
             <p>{{ error }}</p>
         </div>
 
+        <div v-if="message" class="alert">{{ message }}</div>
+
         <div>
-            <router-link :to="{ name: 'users.create' }">Add User</router-link>
+            <button style="float:right;"><router-link :to="{ name: 'users.create' }"><strong style="padding: 5px;">Add New User</strong></router-link></button>
         </div>
 
         <!--<ul v-if="users">-->
@@ -15,19 +17,49 @@
             <!--</li>-->
         <!--</ul>-->
 
-        <ul v-if="users">
-            <li v-for="{ id, name, email } in users">
-                <strong>Name:</strong> {{ name }},
-                <strong>Email:</strong> {{ email }} |
-                <router-link :to="{ name: 'users.edit', params: { id } }">Edit</router-link>
-            </li>
-        </ul>
+        <!--<ul v-if="users">-->
+            <!--<li v-for="{ id, name, email } in users">-->
+                <!--<strong>Name:</strong> {{ name }},-->
+                <!--<strong>Email:</strong> {{ email }} |-->
+                <!--<router-link :to="{ name: 'users.edit', params: { id } }">Edit</router-link>-->
+            <!--</li>-->
+        <!--</ul>-->
 
-        <div class="pagination">
-            <button :disabled="! prevPage" @click.prevent="goToPrev">Previous</button>
-            {{ paginatonCount }}
-            <button :disabled="! nextPage" @click.prevent="goToNext">Next</button>
-        </div>
+        <table v-if="users" id="userTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="{ id, name, email } in users">
+                    <td>
+                        {{ name }}
+                    </td>
+                    <td>
+                        {{ email }}
+                    </td>
+                    <td>
+                        <button><router-link :to="{ name: 'users.edit', params: { id } }">Edit</router-link></button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <strong>10 data show every single page.Click previous and next page and looking your data.</strong>
+                    </td>
+                    <td>
+                        <div class="pagination">
+                            <button :disabled="! prevPage" @click.prevent="goToPrev">Previous</button>
+                            {{ paginatonCount }}
+                            <button :disabled="! nextPage" @click.prevent="goToNext">Next</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 <script>
@@ -50,6 +82,7 @@
             return {
                 users: null,
                 meta: null,
+                message: false,
                 links: {
                     first: null,
                     last: null,
@@ -161,3 +194,28 @@
         }
     }
 </script>
+
+<style scoped>
+    #userTable {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #userTable td, #userTable th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #userTable tr:nth-child(even){background-color: #f2f2f2;}
+
+    #userTable tr:hover {background-color: #ddd;}
+
+    #userTable th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>

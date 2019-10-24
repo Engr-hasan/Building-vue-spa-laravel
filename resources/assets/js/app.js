@@ -2,8 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
+import 'vue-material/dist/vue-material.js'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'bootstrap-vue/dist/bootstrap-vue.js'
 
 Vue.use(VueRouter)
 
@@ -11,16 +13,17 @@ Vue.use(VueMaterial)
 
 Vue.use(BootstrapVue)
 
-import App from './views/App'
-import Home from './views/Home'
-import Hello from './views/Hello'
-import UsersIndex from './views/UsersIndex'
+import App from './views/App';
+import Home from './views/Home';
+import Hello from './views/Hello';
+import UsersIndex from './views/UsersIndex';
 import UsersCreate from './views/UsersCreate';
-import UsersEdit from './views/UsersEdit'
-import NotFound from './views/NotFound'
+import UsersEdit from './views/UsersEdit';
+import NotFound from './views/NotFound';
 
 const router = new VueRouter({
     mode: 'history',
+    linkActiveClass: "active",
     routes: [
         {
             path: '/',
