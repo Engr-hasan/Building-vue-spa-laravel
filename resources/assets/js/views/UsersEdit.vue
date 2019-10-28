@@ -4,7 +4,7 @@
         <div v-if="! loaded">Loading...</div>
         <form @submit.prevent="onSubmit($event)" v-else>
             <table id="userTable">
-                <thead>
+                <thead>message
                     <tr>
                         <td colspan="2"></td>
                         <td>
